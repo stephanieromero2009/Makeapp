@@ -1,0 +1,226 @@
+/* =====================================================
+   estilos.css - Diseño femenino rosa / fucsia / lila
+   ===================================================== */
+
+/* Variables de color: cámbialas aquí y cambia toda la página */
+:root {
+  --rosa: #fde4ef;
+  --rosa-medio: #f8b4d0;
+  --fucsia: #d6336c;
+  --fucsia-osc: #a61e4d;
+  --lila: #c9a7eb;
+  --lila-claro: #f3eafd;
+  --texto: #4a1c3a;
+  --blanco: #fff;
+  --sombra: 0 10px 30px rgba(214, 51, 108, .15);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: "Quicksand", sans-serif;
+  color: var(--texto);
+  background: linear-gradient(180deg, var(--rosa), var(--lila-claro));
+  line-height: 1.6;
+}
+h1, h2, h3 { font-family: "Playfair Display", serif; }
+h2 { color: var(--fucsia-osc); margin-bottom: .6rem; }
+
+/* ---------- Menú ---------- */
+.menu {
+  position: sticky; top: 0; z-index: 10;
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 1rem 5%; background: rgba(255,255,255,.85); backdrop-filter: blur(8px);
+}
+.logo { font-family: "Playfair Display"; font-size: 1.5rem; color: var(--texto); text-decoration: none; }
+.logo span { color: var(--fucsia); font-style: italic; }
+.menu nav a { margin-left: 1rem; color: var(--texto); text-decoration: none; font-weight: 600; }
+.menu nav a:hover { color: var(--fucsia); }
+
+/* ---------- Portada ---------- */
+.hero {
+  text-align: center; padding: 5rem 1rem;
+  background: radial-gradient(circle at 30% 20%, var(--rosa-medio), transparent 60%),
+              radial-gradient(circle at 70% 80%, var(--lila), transparent 60%);
+}
+.hero h1 { font-size: clamp(2.2rem, 6vw, 4rem); }
+.hero em { color: var(--fucsia); }
+.hero p { margin: 1rem auto 2rem; max-width: 500px; }
+
+/* ---------- Contenedor y paneles ---------- */
+.contenedor { width: 90%; max-width: 1100px; margin: 2rem auto; }
+.panel { background: var(--blanco); border-radius: 24px; padding: 2rem; margin-bottom: 1.5rem; box-shadow: var(--sombra); }
+.panel ul { padding-left: 1.2rem; margin: .5rem 0; }
+.titulo { text-align: center; font-size: 2rem; margin: 2rem 0 1rem; }
+
+.grid2, .grid3 { display: grid; gap: 1rem; margin-top: 1rem; }
+.grid2 { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+.grid3 { grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); }
+.mini { background: var(--lila-claro); border-radius: 18px; padding: 1.2rem; }
+.mini span { font-size: 1.8rem; }
+
+blockquote { border-left: 4px solid var(--fucsia); background: var(--rosa); padding: 1rem; border-radius: 0 12px 12px 0; margin: 1rem 0 .5rem; font-style: italic; }
+cite { display: block; margin-top: .4rem; font-size: .85rem; font-style: normal; }
+
+/* ---------- Botones ---------- */
+.btn {
+  display: inline-block; border: none; cursor: pointer; text-decoration: none;
+  background: linear-gradient(135deg, var(--fucsia), var(--lila));
+  color: var(--blanco); padding: .75rem 1.5rem; border-radius: 999px; font-weight: 600; font-family: inherit;
+  transition: transform .2s;
+}
+.btn:hover { transform: translateY(-2px); }
+.btn-sec { background: var(--lila-claro); color: var(--fucsia-osc); }
+.btn-sm { padding: .45rem 1rem; font-size: .9rem; }
+.chip { border: 2px solid var(--rosa-medio); background: var(--blanco); color: var(--texto); padding: .4rem .9rem; border-radius: 999px; cursor: pointer; font-family: inherit; }
+.chip.activo, .chip:hover { background: var(--fucsia); border-color: var(--fucsia); color: var(--blanco); }
+
+/* ---------- Probador ---------- */
+.probador { display: grid; grid-template-columns: 1.3fr 1fr; gap: 1.5rem; margin-top: 1rem; }
+.camara { position: relative; aspect-ratio: 3/4; background: var(--texto); border-radius: 20px; overflow: hidden; }
+.camara video { width: 100%; height: 100%; object-fit: cover; transform: scaleX(-1); } /* efecto espejo */
+.aviso { position: absolute; inset: 0; display: grid; place-items: center; color: var(--rosa); }
+
+/* La capa de labios: una forma ovalada con mezcla "multiply" para que parezca labial real */
+.labios {
+  display: none; position: absolute; left: 50%; top: 68%;
+  width: 34%; height: 9%; transform: translate(-50%, -50%);
+  background: #C2185B; opacity: .55; mix-blend-mode: multiply;
+  border-radius: 50% 50% 45% 45% / 60% 60% 40% 40%;
+  outline: 2px dashed rgba(255,255,255,.6); outline-offset: 6px; /* guía */
+  filter: blur(2px);
+}
+/* Capa de luz: cambia el ambiente */
+.luz { position: absolute; inset: 0; pointer-events: none; mix-blend-mode: soft-light; }
+.luz.dia { background: rgba(255, 250, 230, .25); }
+.luz.fiesta { background: linear-gradient(135deg, rgba(200,0,255,.45), rgba(255,0,120,.45)); }
+.luz.oficina { background: rgba(180, 210, 255, .4); }
+
+.controles h3 { margin: 1.2rem 0 .5rem; font-size: 1.1rem; }
+.colores { display: flex; gap: .6rem; flex-wrap: wrap; }
+.colores button { width: 42px; height: 42px; border-radius: 50%; border: 3px solid var(--blanco); box-shadow: var(--sombra); cursor: pointer; }
+.colores button.activo { outline: 3px solid var(--fucsia); }
+.luces { display: flex; gap: .5rem; flex-wrap: wrap; }
+input[type=range] { width: 100%; accent-color: var(--fucsia); }
+.peq { font-size: .9rem; }
+.resultado { margin-top: .8rem; font-weight: 600; color: var(--fucsia-osc); }
+
+/* ---------- Filtros y cards ---------- */
+.filtros { display: flex; gap: .7rem; flex-wrap: wrap; justify-content: center; margin-bottom: 1.5rem; }
+select, input, textarea { padding: .7rem 1rem; border: 2px solid var(--rosa-medio); border-radius: 14px; font-family: inherit; background: var(--blanco); color: var(--texto); }
+.cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 1.3rem; margin-bottom: 2rem; }
+.card { background: var(--blanco); border-radius: 22px; overflow: hidden; box-shadow: var(--sombra); transition: transform .2s; }
+.card:hover { transform: translateY(-5px); }
+.card img { width: 100%; height: 200px; object-fit: cover; background: var(--rosa); }
+.card-body { padding: 1rem 1.2rem 1.3rem; }
+.card-body small { color: var(--fucsia); font-weight: 600; }
+.etiquetas { display: flex; flex-wrap: wrap; gap: .3rem; margin: .5rem 0; }
+.etiquetas span { background: var(--lila-claro); padding: .1rem .6rem; border-radius: 999px; font-size: .8rem; }
+.precio { font-size: 1.4rem; font-weight: 600; color: var(--fucsia-osc); margin: .3rem 0 .7rem; }
+.alerta { color: #b02a37; font-weight: 600; font-size: .9rem; }
+.acciones { display: flex; justify-content: space-between; margin-top: .8rem; }
+.acciones a { color: var(--texto); font-size: .9rem; }
+
+.formulario { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: .8rem; }
+.formulario textarea { grid-column: 1 / -1; }
+
+/* ---------- Modal ---------- */
+.modal { display: none; position: fixed; inset: 0; background: rgba(74,28,58,.5); z-index: 50; place-items: center; padding: 1rem; }
+.modal.abierto { display: grid; }
+.modal-caja { background: var(--blanco); border-radius: 24px; padding: 2rem; max-width: 420px; width: 100%; position: relative; }
+.modal-caja ul { margin: 1rem 0; padding-left: 1.2rem; }
+.modal-caja li.malo { color: #b02a37; font-weight: 600; }
+.cerrar { position: absolute; top: .6rem; right: 1rem; border: none; background: none; font-size: 1.8rem; cursor: pointer; color: var(--fucsia); }
+
+footer { text-align: center; padding: 2rem; font-size: .9rem; }
+
+/* ---------- Responsive (celular) ---------- */
+@media (max-width: 768px) {
+  .probador { grid-template-columns: 1fr; }
+  .menu nav a { margin-left: .6rem; font-size: .9rem; }
+  .panel { padding: 1.3rem; }
+}
+
+/* =====================================================
+   AGREGADO AL FINAL: Capas de maquillaje del probador
+   ===================================================== */
+.capa-maquillaje {
+  position: absolute;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity .3s ease, background-color .3s ease;
+  mix-blend-mode: multiply;
+  filter: blur(8px);
+  z-index: 2; /* Para que esté sobre el video */
+}
+
+/* Forzamos al video a quedarse atrás para que no empuje las capas */
+.camara video {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+
+/* Ajustamos las zonas del rostro */
+#capaBase       { inset: 10% 15% 15% 15%; border-radius: 50% 50% 45% 45%; }
+#capaPolvo      { inset: 10% 15% 15% 15%; border-radius: 50% 50% 45% 45%; }
+#capaContorno   { inset: 5% 5% 10% 5%; border-radius: 50%; 
+                  -webkit-mask-image: radial-gradient(ellipse at center, transparent 40%, black 70%);
+                  mask-image: radial-gradient(ellipse at center, transparent 40%, black 70%); }
+#capaRubor      { inset: 40% 10% 30% 10%; border-radius: 50% 50% 40% 40%;
+                  -webkit-mask-image: radial-gradient(ellipse at center, black 20%, transparent 70%);
+                  mask-image: radial-gradient(ellipse at center, black 20%, transparent 70%); 
+                  filter: blur(15px); }
+#capaIluminador { inset: 25% 20% 45% 20%; border-radius: 50%;
+                  -webkit-mask-image: radial-gradient(ellipse at center, black 10%, transparent 60%);
+                  mask-image: radial-gradient(ellipse at center, black 10%, transparent 60%); }
+#capaLabios     { inset: 60% 35% 25% 35%; border-radius: 50% 50% 40% 40% / 60% 60% 40% 40%;
+                  filter: blur(3px); }
+
+/* Aseguramos que la capa de luz esté por encima */
+.luz {
+  z-index: 3;
+}
+/* =====================================================
+   HERO LLAMATIVO (Forzado para que se note)
+   ===================================================== */
+
+.titulo-glow {
+  font-family: "Playfair Display", serif !important;
+  font-size: clamp(2.5rem, 7vw, 4.5rem) !important; /* Más grande */
+  font-weight: 700 !important;
+  line-height: 1.1 !important;
+  letter-spacing: -1px !important;
+  background: linear-gradient(135deg, var(--fucsia-osc), var(--fucsia), var(--lila)) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  background-clip: text !important;
+  color: transparent !important;
+  filter: drop-shadow(2px 4px 8px rgba(214, 51, 108, 0.3)) !important;
+}
+
+.titulo-glow em {
+  font-style: italic !important;
+  background: linear-gradient(transparent 60%, var(--rosa-medio) 40%) !important;
+}
+
+.frase-hero {
+  font-family: "Playfair Display", serif !important;
+  font-style: italic !important;
+  font-size: 1.3rem !important;
+  color: var(--texto) !important;
+  opacity: 0.9 !important;
+  margin: 1rem auto 2rem !important;
+}
+
+.btn-hero {
+  font-size: 1.1rem !important;
+  padding: 1rem 2rem !important;
+  box-shadow: 0 8px 20px rgba(214, 51, 108, 0.3) !important;
+  position: relative !important;
+  overflow: hidden !important;
+}
+
+.btn-hero:hover {
+  transform: translateY(-3px) scale(1.05) !important;
+  box-shadow: 0 12px 25px rgba(214, 51, 108, 0.5) !important;
+}
